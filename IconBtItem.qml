@@ -1,8 +1,8 @@
 import QtQuick 2.0
 
 Rectangle {
-    width: 60
-    height: 60
+    width: parent.width/10 -10
+    height: parent.height
     Image{
         anchors.fill: parent
         source: "file:/"+defaultText

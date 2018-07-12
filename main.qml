@@ -12,20 +12,24 @@ Window {
 
     signal btClicked(int numberBT,string path)
 
-    signal reWriteDisplayInfo(string str)
+    signal newInfo(string str)
 
-    function rewritedisplayinfo(str){
+    function newinfo(str){
         displayinfo.text = str;
     }
 
     Component.onCompleted: {
-        mainWin.reWriteDisplayInfo.connect( rewritedisplayinfo );
+        mainWin.newInfo.connect( newinfo );
     }
 
     Row{
         id: row1
         spacing: 10
-        height: 100
+        height: parent.height/8
+        width: parent.width
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
 
         IconBtItem{
             id: bt1
@@ -71,10 +75,11 @@ Window {
     Rectangle {
         id: mainrectangle
         anchors.top: row1.bottom
-        anchors.topMargin: 15
-
-        width: 800
-        height: 570
+        anchors.topMargin: 5
+        anchors.left: parent.left
+        anchors.right: parent.right
+        width: parent.width
+        height: (parent.height/8)*6 -5
         Image{
             id: img
             anchors.fill: parent
@@ -89,7 +94,7 @@ Window {
     }
     Text {
         id: displayinfo
-        height: 30
+        height: parent.height/8
         color: "#ffffff"
         text: ""
         font.pointSize: 12

@@ -1,11 +1,8 @@
 #include "matchmainwindows.h"
 MatchMainWindows::MatchMainWindows(QObject *parent) : QObject(parent){
 
-    QString DeskPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    DeskPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 
-//    for(int i=1;i<11;i++){
-//        IconVariant["bt"+i] = DeskPath+"/image/"+i+".jpg";
-//    }
     IconVariant["bt1"] = DeskPath+"/image/1.jpg";
     IconVariant["bt2"] = DeskPath+"/image/2.jpg";
     IconVariant["bt3"] = DeskPath+"/image/3.jpg";
@@ -29,7 +26,7 @@ MatchMainWindows::MatchMainWindows(QObject *parent) : QObject(parent){
     QQuickWindow* rootWin = qobject_cast<QQuickWindow *>( topLevel );
 
     QObject::connect( rootWin, SIGNAL( btClicked(int,QString)), this, SLOT( btClicked(int,QString)) );
-    QObject::connect( this, SIGNAL( reWriteDisplayInfo(QString)), rootWin, SIGNAL( reWriteDisplayInfo(QString)) );
+    QObject::connect( this, SIGNAL( newInfo(QString)), rootWin, SIGNAL( newInfo(QString)) );
 }
 
 void MatchMainWindows::btClicked(int numberBT, QString path){
@@ -39,7 +36,7 @@ void MatchMainWindows::btClicked(int numberBT, QString path){
     current_time = QTime::currentTime();
     msec = current_time.msec();
 
-    cv::Mat src = cv::imread("/Users/williams/Desktop/image/source.jpg");
+    cv::Mat src = cv::imread((DeskPath+"/image/source.jpg").toUtf8().constData());
 
     cv::Mat roiImg = cv::imread(path.toUtf8().constData());
     cv::Mat displayImg = src.clone();
@@ -63,7 +60,7 @@ void MatchMainWindows::btClicked(int numberBT, QString path){
         QString tempStr;
         tempStr = "mainVal : "+ QString::number(minVal) + " Match Time : " + QString::number(msec2 - msec) + "\n";
         tempStr =tempStr + " x : " + QString::number(minLoc.x) + " y : " + QString::number(minLoc.y);
-        emit reWriteDisplayInfo(tempStr);
+        emit newInfo(tempStr);
     }
 }
 

@@ -37,7 +37,7 @@ public:
 signals:
     void callQmlRefeshImg();
     void IconPathChanged();
-    void reWriteDisplayInfo(QString str);
+    void newInfo(QString str);
 
 public slots:
     void btClicked(int numberBT,QString path);
@@ -45,6 +45,7 @@ public slots:
 private:
     QQmlApplicationEngine engine;
     QVariantMap IconVariant;
+    QString DeskPath;
 };
 
 #endif // MATCHMAINWINDOWS_H
