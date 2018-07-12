@@ -33,43 +33,43 @@ Window {
 
         IconBtItem{
             id: bt1
-            default property string defaultText: mainui.IconPath["bt1"]
+            property int number: 1
         }
         IconBtItem{
             id: bt2
-            default property string defaultText: mainui.IconPath["bt2"]
+            property int number: 2
         }
         IconBtItem{
             id: bt3
-            default property string defaultText: mainui.IconPath["bt3"]
+            property int number: 3
         }
         IconBtItem{
             id: bt4
-            default property string defaultText: mainui.IconPath["bt4"]
+            property int number: 4
         }
         IconBtItem{
             id: bt5
-            default property string defaultText: mainui.IconPath["bt5"]
+            property int number: 5
         }
         IconBtItem{
             id: bt6
-            default property string defaultText: mainui.IconPath["bt6"]
+            property int number: 6
         }
         IconBtItem{
             id: bt7
-            default property string defaultText: mainui.IconPath["bt7"]
+            property int number: 7
         }
         IconBtItem{
             id: bt8
-            default property string defaultText: mainui.IconPath["bt8"]
+            property int number: 8
         }
         IconBtItem{
             id: bt9
-            default property string defaultText: mainui.IconPath["bt9"]
+            property int number: 9
         }
         IconBtItem{
             id: bt10
-            default property string defaultText: mainui.IconPath["bt10"]
+            property int number: 10
         }
     }
     Rectangle {

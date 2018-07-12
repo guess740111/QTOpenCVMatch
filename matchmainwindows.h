@@ -46,6 +46,8 @@ private:
     QQmlApplicationEngine engine;
     QVariantMap IconVariant;
     QString DeskPath;
+
+    cv::Mat src;
 };
 
 #endif // MATCHMAINWINDOWS_H

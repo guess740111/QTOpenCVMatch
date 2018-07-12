@@ -3,17 +3,10 @@ MatchMainWindows::MatchMainWindows(QObject *parent) : QObject(parent){
 
     DeskPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 
-    IconVariant["bt1"] = DeskPath+"/image/1.jpg";
-    IconVariant["bt2"] = DeskPath+"/image/2.jpg";
-    IconVariant["bt3"] = DeskPath+"/image/3.jpg";
-    IconVariant["bt4"] = DeskPath+"/image/4.jpg";
-    IconVariant["bt5"] = DeskPath+"/image/5.jpg";
-    IconVariant["bt6"] = DeskPath+"/image/6.jpg";
-    IconVariant["bt7"] = DeskPath+"/image/7.jpg";
-    IconVariant["bt8"] = DeskPath+"/image/8.jpg";
-    IconVariant["bt9"] = DeskPath+"/image/9.jpg";
-    IconVariant["bt10"] = DeskPath+"/image/10.jpg";
+    IconVariant["DeskPath"] = DeskPath;
     IconVariant["source"] = DeskPath+"/image/source.jpg";
+
+    src = cv::imread((DeskPath+"/image/source.jpg").toUtf8().constData());
 
     m_pImgProvider = new ImageProvider();
     engine.rootContext()->setContextProperty("mainui",this);
@@ -34,11 +27,9 @@ void MatchMainWindows::btClicked(int numberBT, QString path){
     QTime current_time;
     int msec,msec2;
     current_time = QTime::currentTime();
-    msec = current_time.msec();
+    msec = (current_time.second()*1000)+current_time.msec();
 
-    cv::Mat src = cv::imread((DeskPath+"/image/source.jpg").toUtf8().constData());
-
-    cv::Mat roiImg = cv::imread(path.toUtf8().constData());
+    cv::Mat roiImg = cv::imread((DeskPath+"/image/"+QString::number(numberBT)+".jpg").toUtf8().constData());
     cv::Mat displayImg = src.clone();
 
     cv::Mat result;
@@ -55,7 +46,7 @@ void MatchMainWindows::btClicked(int numberBT, QString path){
     emit callQmlRefeshImg();
 
     current_time = QTime::currentTime();
-    msec2 = current_time.msec();
+    msec2 = (current_time.second()*1000)+current_time.msec();
     if(minVal < 0.1 || minVal >2){
         QString tempStr;
         tempStr = "mainVal : "+ QString::number(minVal) + " Match Time : " + QString::number(msec2 - msec) + "\n";

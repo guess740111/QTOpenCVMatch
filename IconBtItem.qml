@@ -5,12 +5,12 @@ Rectangle {
     height: parent.height
     Image{
         anchors.fill: parent
-        source: "file:/"+defaultText
+        source: "file:/"+mainui.IconPath["DeskPath"]+"/image/"+number+".jpg"
     }
     MouseArea{
         anchors.fill: parent
         onClicked: {
-            mainWin.btClicked(1,defaultText);
+            mainWin.btClicked(number,mainui.IconPath["DeskPath"]+"/image/"+number+".jpg");
         }
     }
 }
