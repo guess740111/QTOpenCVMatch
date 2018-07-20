@@ -1,7 +1,7 @@
 # QTOpenCVMatch @@
 ##Download OpenCV source
-1、Download OpenCV source (Github) V3.4.1 : https://github.com/opencv/opencv/tree/3.4.1
-2、Download OpenCV contrib source (Github) V3.4.1 : https://github.com/opencv/
+##1、Download OpenCV source (Github) V3.4.1 : https://github.com/opencv/opencv/tree/3.4.1
+##2、Download OpenCV contrib source (Github) V3.4.1 : https://github.com/opencv/
 opencv_contrib/archive/3.4.1.zip\n
 
 ##Build OpenCV
