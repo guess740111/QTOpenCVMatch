@@ -9,8 +9,10 @@ MatchMainWindows::MatchMainWindows(QObject *parent) : QObject(parent){
     src = cv::imread((DeskPath+"/image/source.jpg").toUtf8().constData());
 
     m_pImgProvider = new ImageProvider();
+    m_VideoProvider = new VideoProvider();
     engine.rootContext()->setContextProperty("mainui",this);
     engine.addImageProvider(QLatin1String("CodeImg"), m_pImgProvider);
+    engine.addImageProvider(QLatin1String("videoCapture"), m_VideoProvider);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     emit IconPathChanged();
@@ -20,6 +22,10 @@ MatchMainWindows::MatchMainWindows(QObject *parent) : QObject(parent){
 
     QObject::connect( rootWin, SIGNAL( btClicked(int,QString)), this, SLOT( btClicked(int,QString)) );
     QObject::connect( this, SIGNAL( newInfo(QString)), rootWin, SIGNAL( newInfo(QString)) );
+
+
+
+
 }
 
 void MatchMainWindows::btClicked(int numberBT, QString path){
@@ -39,6 +45,10 @@ void MatchMainWindows::btClicked(int numberBT, QString path){
     cv::Point minLoc;
     cv::minMaxLoc(result, &minVal, &maxVal, &minLoc, 0);
     cv::rectangle(displayImg, minLoc, cv::Point(minLoc.x+roiImg.cols , minLoc.y+roiImg.rows), cv::Scalar(0,0,255)/*Blue,Green,Red*/, 3);
+
+    //指定插入的大小和位置
+//    cv::Mat imgROI = displayImg(Rect((displayImg.cols/2)-(roiImg.cols/2),30,roiImg.cols,roiImg.rows));
+//    cv::addWeighted(imgROI,0,roiImg,1,0,imgROI);
 
 
     QImage tempimage = cvMat2QImage(displayImg);

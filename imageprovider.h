@@ -16,7 +16,6 @@ public:
     QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize);
 
     QImage img;
-
 };
 
 #endif // IMAGEPROVIDER_H

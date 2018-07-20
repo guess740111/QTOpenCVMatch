@@ -13,9 +13,16 @@
 #include <QUrl>
 #include <QVariantMap>
 #include <QStandardPaths>
+#include <QMessageBox>
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/videoio.hpp>
+
+
 #include "imageprovider.h"
+#include "videoprovider.h"
 
 class MatchMainWindows : public QObject
 {
@@ -33,6 +40,7 @@ public:
     QImage cvMat2QImage(const cv::Mat& mat);
 
     ImageProvider *m_pImgProvider;
+    VideoProvider *m_VideoProvider;
 
 signals:
     void callQmlRefeshImg();
@@ -48,6 +56,7 @@ private:
     QString DeskPath;
 
     cv::Mat src;
+
 };
 
 #endif // MATCHMAINWINDOWS_H

@@ -1,7 +1,8 @@
 #include "imageprovider.h"
 
-ImageProvider::ImageProvider() : QQuickImageProvider(QQuickImageProvider::Image)
+ImageProvider::ImageProvider() : QQuickImageProvider(QQuickImageProvider::Pixmap)
 {
+
 }
 
 QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
@@ -11,6 +12,6 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
 
 QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
 {
-    qDebug() << "return qpixmap";
     return QPixmap::fromImage(img);
+
 }

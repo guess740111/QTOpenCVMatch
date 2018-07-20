@@ -80,17 +80,48 @@ Window {
         anchors.right: parent.right
         width: parent.width
         height: (parent.height/8)*6 -5
-        Image{
-            id: img
-            anchors.fill: parent
-            source: "file:/"+mainui.IconPath["source"]
-            Connections{
-                target: mainui
-                onCallQmlRefeshImg:{
-                    img.source = "image://CodeImg/"+ Math.random()
+        Rectangle{
+            id: rec1
+            width: parent.width/2
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            Image{
+                id: img1
+                anchors.fill: parent
+                source: "file:/"+mainui.IconPath["source"]
+//                source: "image://videoCapture/hoge"
+                Connections{
+                    target: mainui
+                    onCallQmlRefeshImg:{
+                        img1.source = "image://CodeImg/"+ Math.random()
+                    }
                 }
             }
         }
+        Rectangle{
+            id: rec2
+            width: parent.width/2
+            anchors.left: rec1.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            Image{
+                id: img
+                anchors.fill: parent
+                source: "image://videoCapture/hoge"
+            }
+            Timer {
+                interval: 100
+                running: true
+                repeat: true
+                onTriggered:  {
+                    if (img.status === Image.Ready) {
+                        img.source = "image://videoCapture/" + Math.random()
+                    }
+                }
+            }
+        }
+
     }
     Text {
         id: displayinfo
@@ -107,5 +138,35 @@ Window {
         anchors.leftMargin: 0
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
+//        Rectangle{
+//            id: buttonid1
+//            width: 100
+//            height: parent.height
+//            anchors.top: parent.top
+//            anchors.topMargin: 15
+//            anchors.bottom: parent.bottom
+//            anchors.bottomMargin: 15
+//            anchors.right: parent.right
+//            anchors.rightMargin: 15
+//            color: "#A084c1ff"
+//            radius: 20
+//            border.color: "white"
+//            border.width: 2
+//            Text {
+//                id: name
+//                text: qsTr("學習")
+//                verticalAlignment: Text.AlignVCenter
+//                horizontalAlignment: Text.AlignHCenter
+//                anchors.fill: parent
+//                color: "red"
+//                font.pointSize: 14
+//                MouseArea{
+//                    anchors.fill: parent
+//                    onClicked: {
+//                        buttonid1.color = "#A084c1ff"
+//                    }
+//                }
+//            }
+//        }
     }
 }
